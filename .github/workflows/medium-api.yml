@@ -35,4 +35,4 @@ jobs:
       - name: fetch from master
         run: git fetch origin master
       - name: push code to master
-        run: git push origin HEAD:master
+        run: git push https://${{secrets.GITHUB_TOKEN}}@github.com/Pranshu1902/workflows.git
