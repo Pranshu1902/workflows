@@ -5,6 +5,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/labeler@v4
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
       - name: checkout repo content
         uses: actions/checkout@v2 # checkout the repository content to github runner.
       - name: setup python
@@ -19,10 +22,7 @@ jobs:
         run: |
           python ./.github/workflows/medium.py
       - name: switching from HTTPS to SSH
-        run: |
-          git remote set-url origin ${{ secrets.ssh }} git@github.com:Pranshu1902/workflows.git
-          git config --global user.email "you@example.com"
-          git config --global user.name "Your Name"
+        run: git remote set-url origin ${{ secrets.ssh }} git@github.com:Pranshu1902/workflows.git
       - name: check for changes
         run: git status
       - name: stage changed files
