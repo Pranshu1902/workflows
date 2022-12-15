@@ -23,6 +23,26 @@ jobs:
       - name: execute py script # run the run.py to get the latest data
         run: |
           python ./.github/workflows/medium.py
+
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/labeler@v4
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: checkout repo content
+        uses: actions/checkout@v2 # checkout the repository content to github runner.
+      - name: setup python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8 #install the python needed
+      - name: install dependencies
+        run: |
+          python -m pip install 'requests'
+          python -m pip install 'bs4'
+      - name: execute py script # run the run.py to get the latest data
+        run: |
+          python ./.github/workflows/medium.py
       - name: switching from HTTPS to SSH
         run: |
           git remote set-url origin ${{ secrets.ssh }} git@github.com:Pranshu1902/workflows.git
@@ -37,4 +57,4 @@ jobs:
       - name: fetch from master
         run: git fetch origin master
       - name: push code to master
-        run: git push https://${{secrets.GITHUB_TOKEN}}@github.com/Pranshu1902/workflows.git
+        run: git push origin HEAD:master
