@@ -2,7 +2,6 @@ import requests, bs4, json
 
 res = requests.get("https://medium.com/@pranshu1902")
 noStarchSoup = bs4.BeautifulSoup(res.content, 'html.parser')
-
 images = noStarchSoup.select("a > div > img")
 
 blogs = []
