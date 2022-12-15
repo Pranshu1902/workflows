@@ -17,9 +17,10 @@ for blog in range(0,end,2):
 
 with open("blog.json", "w") as f:
     f.write("[")
-    for i in blogs:
-        f.write(json.dumps(i))
+    for i in range(2):
+        f.write(json.dumps(blogs[i]))
         f.write(",")
+    f.write(json.dumps(blogs[2]))
     f.write("]")
 
 print("Blog data fetched!")
