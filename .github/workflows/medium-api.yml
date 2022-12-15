@@ -19,7 +19,7 @@ jobs:
         run: |
           python ./.github/workflows/medium.py
       - name: switching from HTTPS to SSH
-        run: git remote set-url origin ${{ secrets.ssh }}
+        run: git remote set-url origin ${{ secrets.ssh }} git@github.com:Pranshu1902/workflows.git
       - name: check for changes
         run: git status
       - name: stage changed files
