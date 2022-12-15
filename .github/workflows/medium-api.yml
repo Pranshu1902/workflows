@@ -1,6 +1,8 @@
 name: medium-api
 run-name: Pranshu's blog extraction
 on: [push]
+permissions:
+  contents: write
 jobs:
   build:
     runs-on: ubuntu-latest
