@@ -8,7 +8,6 @@ images = noStarchSoup.select("a > div > img")
 blogs = []
 n = 3
 end = n*2-1
-
 intros = noStarchSoup.select("a > div > p")
 data = noStarchSoup.select("a > div > img")
 
@@ -20,7 +19,7 @@ with open("./src/blog.json", "w") as f:
     for i in range(2):
         f.write(json.dumps(blogs[i]))
         f.write(",")
-    f.write(json.dumps(blogs[2]))
     f.write("]")
 
+    f.write(json.dumps(blogs[2]))
 print("Blog data fetched!")
