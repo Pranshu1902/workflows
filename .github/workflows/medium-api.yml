@@ -27,6 +27,9 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.WORKFLOW_GIT_ACCESS_TOKEN }}
       - uses: actions/labeler@v4
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
@@ -57,4 +60,4 @@ jobs:
       - name: fetch from master
         run: git fetch origin master
       - name: push code to master
-        run: git push origin HEAD:master
+        run: git push
