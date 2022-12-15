@@ -19,6 +19,7 @@ with open("./src/blog.json", "w") as f:
     for i in range(2):
         f.write(json.dumps(blogs[i]))
         f.write(",")
+    # 3rd blog
     f.write(json.dumps(blogs[2]))
     f.write("]")
 
