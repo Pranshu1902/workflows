@@ -18,6 +18,10 @@ jobs:
       - name: execute py script # run the run.py to get the latest data
         run: |
           python ./.github/workflows/medium.py
+      - name: login git
+        uses: de-vri-es/setup-git-credentials@v2
+        with:
+          credentials: ${{secrets.GIT_CREDENTIALS}}
       - name: switching from HTTPS to SSH
         run: git remote set-url origin ${{ secrets.ssh }} git@github.com:Pranshu1902/workflows.git
       - name: check for changes
