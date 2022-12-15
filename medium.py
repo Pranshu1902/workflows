@@ -21,3 +21,5 @@ with open("blog.json", "w") as f:
         f.write(json.dumps(i))
         f.write(",")
     f.write("]")
+
+print("Blog data fetched!")
