@@ -15,9 +15,9 @@ jobs:
         uses: actions/setup-python@v2
         with:
           packages: |
-            requests
-            bs4
-            json
+            'requests'
+            'bs4'
+            'json'
       - name: execute py script # run the run.py to get the latest data
         run: |
           python medium.py
