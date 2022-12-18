@@ -62,7 +62,7 @@ jobs:
           $diff = git diff --name-only HEAD^ HEAD
 
           # Check if a file under docs/ or with the .md extension has changed (added, modified, deleted)
-          $SourceDiff = $diff | Where-Object { $_ -match '^docs/' -or $_ -match '.json$' }
+          $SourceDiff = $diff
           $HasDiff = $SourceDiff.Length -gt 0
 
           # Set the output named "docs_changed"
@@ -71,7 +71,7 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     needs: conditional_job_check_files
-    if: needs.conditional_job_check_files.outputs.run_job == 'True'
+    if: needs.conditional_job_check_files.outputs.docs_changed == 'True'
     steps:
       - uses: actions/checkout@v3
         with:
