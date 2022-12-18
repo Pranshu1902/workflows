@@ -37,7 +37,7 @@ jobs:
           $HasDiff = $SourceDiff.Length -gt 0
 
           echo "$env.updated = $HasDiff"
-          echo "$(env.updated | 'True') >> $HasDiff"
+          echo "$(env.updated | $HasDiff) >> $HasDiff"
           echo $updated
 
       - name: check
