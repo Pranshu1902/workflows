@@ -1,13 +1,13 @@
 name: medium-api
 run-name: Pranshu's blog extraction
 on: [push]
-env:
-  updated: "False"
 permissions:
   contents: write
 jobs:
   publish:
     runs-on: ubuntu-latest
+    outputs:
+      output1: ${{ steps.check_file_changed.outputs.workflows }}
     steps:
       - uses: actions/checkout@v3
         with:
@@ -36,11 +36,11 @@ jobs:
           $SourceDiff = $diff | Where-Object { $_ -match '^docs/' -or $_ -match '.json$' }
           $HasDiff = $SourceDiff.Length -gt 0
 
-          updated | True >> $GTIHUB_ENV
-          echo $updated
+          # Set the output named "workflows"
+          Write-Host "::set-output name=workflows::$HasDiff"
 
       - name: check
-        if: ${{ ENV.updated == 'True' }}
+        if: ${{ steps.check_file_changed.outputs.workflows == 'True' }}
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
@@ -50,7 +50,7 @@ jobs:
           git fetch origin master
 
       - name: Push changes
-        if: ${{ env.updated == 'True'}}
+        if: ${{ steps.check_file_changed.outputs.workflows == 'True'}}
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
