@@ -8,8 +8,8 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       output1: ${{ steps.check_file_changed.outputs.workflows }}
-    # needs: conditional_job_check_files
-    # if: needs.conditional_job_check_files.outputs.output1 == 'True'
+    env:
+      updated: 'False'
     steps:
       - uses: actions/checkout@v3
         with:
@@ -38,11 +38,10 @@ jobs:
           $SourceDiff = $diff | Where-Object { $_ -match '^docs/' -or $_ -match '.json$' }
           $HasDiff = $SourceDiff.Length -gt 0
 
-          # Set the output named "workflows"
-          Write-Host "::set-output name=workflows::$HasDiff"
+          $updated = $HasDiff
 
       - name: check
-        if: ${{ steps.check_file_changed.outputs.workflows == 'True' }}
+        if: ${{ updated == 'True' }}
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
@@ -52,7 +51,7 @@ jobs:
           git fetch origin master
 
       - name: Push changes
-        if: ${{ steps.check_file_changed.outputs.workflows == 'True'}}
+        if: ${{ updated == 'True'}}
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
