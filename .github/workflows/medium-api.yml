@@ -62,7 +62,6 @@ jobs:
       
           git diff --name-only HEAD^ HEAD &gt; files.txt
           while ( IFS= read -r file ) {
-          do
             echo $file
             if [[ $file != src/* ]]; then
               echo "This modified file is not under the 'db' folder."
