@@ -54,7 +54,7 @@ jobs:
         # Give an id to the step, so we can reference it later
         id: check_file_changed
         run: |
-          $diff = git diff
+          $diff = git diff --name-only
 
           $SourceDiff = $diff | Where-Object { $_ -match '^docs/' -or $_ -match '.json$' }
           $HasDiff = $SourceDiff.Length -gt 0
