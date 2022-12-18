@@ -47,8 +47,8 @@ jobs:
     steps:
       - name: switching from HTTPS to SSH
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
+          git config user.email "action@github.com"
+          git config user.name "GitHub Action"
       - name: check for changes
         run: git status
       - name: stage changed files
