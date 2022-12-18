@@ -37,7 +37,7 @@ jobs:
 
       - uses: actions/upload-artifact@v2
         with:
-          name: my-artifact
+          name: blogData
           path: path/to/artifact/world.txt
 
       # run only if 'workflows' files were changed
@@ -60,7 +60,7 @@ jobs:
           repository: "Pranshu1902/workflows"
       - uses: actions/download-artifact@v2
         with:
-          name: my-artifact
+          name: blogData
       - name: switching from HTTPS to SSH
         run: |
           git config --local user.email "action@github.com"
