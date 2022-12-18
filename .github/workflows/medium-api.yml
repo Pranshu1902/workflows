@@ -24,22 +24,7 @@ jobs:
       - name: execute py script # run the run.py to get the latest data
         run: |
           python ./.github/workflows/medium.py
-      # - name: save to artifact
-      #   run: |
-      #     mkdir -p ./src/data.json
-      #     echo ./src/data.json > ./src/blog.json
-      # - uses: actions/upload-artifact@v2
-      #   with:
-      #     name: blogData
-      #     path: ./src/blog.json
-      # run only if 'workflows' files were changed
-      # - name: workflow tests
-      #   if: steps.filter.outputs.workflows == 'true'
-      #   run: echo "Workflow file"
-      # # run only if not 'workflows' files were changed
-      # - name: not workflow tests
-      #   if: steps.filter.outputs.workflows != 'true'
-      #   run: echo "NOT workflow file"
+
 
       - shell: pwsh
         # Give an id to the step, so we can reference it later
