@@ -32,7 +32,7 @@ jobs:
 
       - name: save to artifact
         run: |
-          mkdir -p ./src/blog.json
+          mkdir -p ./src/data.json
           echo hello > ./src/blog.json
 
       - uses: actions/upload-artifact@v2
