@@ -45,10 +45,13 @@ jobs:
     needs: paths-filter
     if: needs.paths-filter.outputs.output1 == 'true'
     steps:
+      - uses: actions/checkout@v3
+        with:
+          repository: "Pranshu1902/workflows"
       - name: switching from HTTPS to SSH
         run: |
-          git config user.email "action@github.com"
-          git config user.name "GitHub Action"
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
       - name: check for changes
         run: git status
       - name: stage changed files
