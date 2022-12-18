@@ -62,7 +62,7 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     needs: conditional_job_check_files
-    if: needs.conditional_job_check_files.outputs.workflows == 'True'
+    if: needs.conditional_job_check_files.outputs.output1 == 'True'
     steps:
       - uses: actions/checkout@v3
         with:
