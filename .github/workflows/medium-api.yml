@@ -56,13 +56,13 @@ jobs:
           $SourceDiff = $diff
           $HasDiff = $SourceDiff.Length -gt 0
 
-          # Set the output named "docs_changed"
-          Write-Host "::set-output name=docs_changed::$HasDiff"
+          # Set the output named "workflows"
+          Write-Host "::set-output name=workflows::$HasDiff"
 
   publish:
     runs-on: ubuntu-latest
     needs: conditional_job_check_files
-    if: needs.conditional_job_check_files.outputs.docs_changed == 'True'
+    if: needs.conditional_job_check_files.outputs.workflows == 'True'
     steps:
       - uses: actions/checkout@v3
         with:
