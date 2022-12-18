@@ -61,7 +61,7 @@ jobs:
           git diff --name-only HEAD^ HEAD
       
           git diff --name-only HEAD^ HEAD &gt; files.txt
-          while ( IFS= read -r file )
+          while ( IFS= read -r file ) {
           do
             echo $file
             if [[ $file != src/* ]]; then
@@ -71,6 +71,7 @@ jobs:
             else
               echo "::set-output name=run_job::true"
             fi
+          }
           done &lt; files.txt
 
   publish:
