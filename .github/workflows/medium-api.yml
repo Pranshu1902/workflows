@@ -37,7 +37,7 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: blogData
-          path: ./src/blog.json
+          path: "./src/blog.json"
 
       # run only if 'workflows' files were changed
       - name: workflow tests
