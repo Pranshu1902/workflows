@@ -42,7 +42,7 @@ jobs:
           }
 
       - name: check
-        if: ${{ env.updated == 'True' }}
+        if: ${{ updated == 'True' }}
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
