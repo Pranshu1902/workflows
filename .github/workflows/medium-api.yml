@@ -37,7 +37,7 @@ jobs:
 
           # Set the output named "workflows"
           Write-Host "::set-output name=workflows::$HasDiff"
-          echo "$steps.check_file_changed.outputs.workflows"
+          echo "(steps.check_file_changed.outputs.workflows)"
 
       - name: check
         if: ${{ steps.check_file_changed.outputs.workflows == 'True' }}
