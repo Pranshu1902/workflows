@@ -58,10 +58,20 @@ jobs:
         # Give an id to the step, so we can reference it later
         id: check_file_changed
         run: |
-          $diff = git diff --name-only HEAD^ HEAD
+          git diff --name-only HEAD^ HEAD
       
-          $HasDiff = $diff
-          echo "::set-output name=run_job::$HasDiff"
+          git diff --name-only HEAD^ HEAD &gt; files.txt
+          while ( IFS= read -r file )
+          do
+            echo $file
+            if [[ $file != src/* ]]; then
+              echo "This modified file is not under the 'db' folder."
+              echo "::set-output name=run_job::false"
+              break
+            else
+              echo "::set-output name=run_job::true"
+            fi
+          done &lt; files.txt
 
   publish:
     runs-on: ubuntu-latest
