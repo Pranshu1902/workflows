@@ -7,7 +7,7 @@ jobs:
   conditional_job_check_files:
     runs-on: ubuntu-latest
     outputs:
-      output1: ${{ steps.filter.outputs.workflows }}
+      output1: ${{ steps.check_file_changed.outputs.workflows }}
     steps:
       - uses: actions/checkout@v3
         with:
