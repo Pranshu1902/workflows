@@ -2,7 +2,7 @@ name: medium-api
 run-name: Pranshu's blog extraction
 on: [push]
 env:
-  updated: 'False'
+  updated: "False"
 permissions:
   contents: write
 jobs:
@@ -36,9 +36,11 @@ jobs:
           $SourceDiff = $diff | Where-Object { $_ -match '^docs/' -or $_ -match '.json$' }
           $HasDiff = $SourceDiff.Length -gt 0
 
-          echo "$env.updated = $HasDiff"
-          echo "$(env.updated | $HasDiff) >> $HasDiff"
-          echo $updated
+          if ($HasDiff) {
+            echo "$updated = $HasDiff"
+            echo "$(updated | 'True') >> $GTIHUB_ENV"
+            echo $updated
+          }
 
       - name: check
         if: ${{ env.updated == 'True' }}
