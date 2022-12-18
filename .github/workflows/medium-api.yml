@@ -71,7 +71,7 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     needs: conditional_job_check_files
-    if: conditional_job_check_files.outputs.docs_changed == 'True'
+    if: needs.conditional_job_check_files.outputs.docs_changed == 'True'
     steps:
       - uses: actions/checkout@v3
         with:
