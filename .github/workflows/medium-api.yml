@@ -1,15 +1,13 @@
 name: medium-api
 run-name: Pranshu's blog extraction
 on: [push]
+env:
+  updated: 'False'
 permissions:
   contents: write
 jobs:
   publish:
     runs-on: ubuntu-latest
-    outputs:
-      output1: ${{ steps.check_file_changed.outputs.workflows }}
-    env:
-      updated: 'False'
     steps:
       - uses: actions/checkout@v3
         with:
@@ -38,7 +36,7 @@ jobs:
           $SourceDiff = $diff | Where-Object { $_ -match '^docs/' -or $_ -match '.json$' }
           $HasDiff = $SourceDiff.Length -gt 0
 
-          $updated = $HasDiff
+          echo "::set-env name=updated::$HasDiff"
 
       - name: check
         if: ${{ env.updated == 'True' }}
