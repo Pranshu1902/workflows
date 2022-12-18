@@ -6,8 +6,10 @@ permissions:
 jobs:
   publish:
     runs-on: ubuntu-latest
-    needs: conditional_job_check_files
-    if: needs.conditional_job_check_files.outputs.output1 == 'True'
+    outputs:
+      output1: ${{ steps.check_file_changed.outputs.workflows }}
+    # needs: conditional_job_check_files
+    # if: needs.conditional_job_check_files.outputs.output1 == 'True'
     steps:
       - uses: actions/checkout@v3
         with:
@@ -40,7 +42,7 @@ jobs:
           Write-Host "::set-output name=workflows::$HasDiff"
 
       - name: check
-        if: ${{ HasDiff == 'True' }}
+        if: ${{ steps.check_file_changed.outputs.workflows == 'True' }}
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
@@ -50,7 +52,7 @@ jobs:
           git fetch origin master
 
       - name: Push changes
-        if: ${{ HasDiff == 'True'}}
+        if: ${{ steps.check_file_changed.outputs.workflows == 'True'}}
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
