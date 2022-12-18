@@ -38,8 +38,8 @@ jobs:
 
           if ($HasDiff) {
             echo "updated | True >> $GTIHUB_ENV"
-            echo $updated
           }
+          echo $updated
 
       - name: check
         if: ${{ ENV.updated == 'True' }}
