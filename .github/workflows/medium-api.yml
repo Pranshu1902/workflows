@@ -41,7 +41,7 @@ jobs:
           $updated = $HasDiff
 
       - name: check
-        if: ${{ updated == 'True' }}
+        if: ${{ env.updated == 'True' }}
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
@@ -51,7 +51,7 @@ jobs:
           git fetch origin master
 
       - name: Push changes
-        if: ${{ updated == 'True'}}
+        if: ${{ env.updated == 'True'}}
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
