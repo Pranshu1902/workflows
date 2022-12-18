@@ -51,9 +51,6 @@ jobs:
       #   if: steps.filter.outputs.workflows != 'true'
       #   run: echo "NOT workflow file"
 
-      - name: add changes
-        run: git add .
-
       - shell: pwsh
         # Give an id to the step, so we can reference it later
         id: check_file_changed
