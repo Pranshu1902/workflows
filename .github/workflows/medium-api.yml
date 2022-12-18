@@ -37,7 +37,7 @@ jobs:
           $HasDiff = $SourceDiff.Length -gt 0
 
           if ($HasDiff) {
-            echo "updated | 'True' >> $GTIHUB_ENV"
+            echo "updated | True >> $GTIHUB_ENV"
             echo $updated
           }
 
