@@ -60,7 +60,7 @@ jobs:
         run: |
           $diff = git diff --name-only HEAD^ HEAD
       
-          $HasDiff = $diff.Length -gt 0
+          $HasDiff = $diff
           echo "::set-output name=run_job::$HasDiff"
 
   publish:
