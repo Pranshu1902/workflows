@@ -25,3 +25,4 @@ with open("./src/blog.json", "w") as f:
     f.write("]")
 
 print("Blog data fetched!")
+print(blogs)
